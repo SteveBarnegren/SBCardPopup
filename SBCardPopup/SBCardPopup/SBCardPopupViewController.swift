@@ -8,6 +8,11 @@
 
 import UIKit
 
+public protocol SBPopupCardContent: class {
+    weak var popupViewController: SBCardPopupViewController? {get set}
+    var allowsTapToDismissPopupCard: Bool {get}
+}
+
 public class SBCardPopupViewController: UIViewController {
     
     // MARK: - Public Interface
@@ -24,8 +29,8 @@ public class SBCardPopupViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    public func close() {
+        animateOut()
     }
     
     // MARK: - Properties
@@ -39,7 +44,25 @@ public class SBCardPopupViewController: UIViewController {
     
     private var containerOffscreenConstraint: NSLayoutConstraint!
     
+    private var popupProtocolResponder: SBPopupCardContent? {
+        
+        if let contentViewController = contentViewController {
+            if let protocolResponder = contentViewController as? SBPopupCardContent {
+                return protocolResponder
+            }
+        }
+        else if let protocolResponder = contentView as? SBPopupCardContent {
+            return protocolResponder
+        }
+        
+        return nil
+    }
+    
     // MARK: - UIViewController
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -50,12 +73,16 @@ public class SBCardPopupViewController: UIViewController {
         containerView.layer.cornerRadius = 5
         containerView.layer.masksToBounds = true
         view.addSubview(containerView)
+        containerView.isUserInteractionEnabled = false
         
         // Content
         if let contentViewController = contentViewController {
             addChildViewController(contentViewController)
         }
         containerView.addSubview(contentView)
+        
+        // Popup Protocol Responder
+        popupProtocolResponder?.popupViewController = self
         
         // Apply Constraints
         applyContainerViewConstraints()
@@ -83,14 +110,7 @@ public class SBCardPopupViewController: UIViewController {
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
-        let margin = CGFloat(0)
-        
         [NSLayoutAttribute.left, .right, .top, .bottom].forEach{
-            
-            var constant = margin
-            if $0 == .right || $0 == .bottom {
-                constant = -constant
-            }
             
             let constraint = NSLayoutConstraint(item: contentView,
                                                 attribute: $0,
@@ -98,7 +118,7 @@ public class SBCardPopupViewController: UIViewController {
                                                 toItem: containerView,
                                                 attribute: $0,
                                                 multiplier: 1.0,
-                                                constant: constant)
+                                                constant: 0)
             containerView.addConstraint(constraint)
         }
     }
@@ -188,6 +208,7 @@ public class SBCardPopupViewController: UIViewController {
             self.view.layoutIfNeeded()
         }, completion: {
             _ in
+            self.containerView.isUserInteractionEnabled = true
         })
     }
     
@@ -226,7 +247,16 @@ public class SBCardPopupViewController: UIViewController {
     // MARK: - Gestures
     
     @objc private func tapAway() {
-        animateOut()
+        
+        if let protocolResponder = popupProtocolResponder {
+            if protocolResponder.allowsTapToDismissPopupCard {
+                animateOut()
+            }
+        }
+        else{
+            animateOut()
+        }
+        
     }
     
 }

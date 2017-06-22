@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -76,6 +77,167 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xCq-5e-8VY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="764.79999999999995" y="16.191904047976013"/>
+        </scene>
+        <!--Popup Content With Dismiss View Controller-->
+        <scene sceneID="4sm-85-I3D">
+            <objects>
+                <viewController storyboardIdentifier="PopupContentWithDismissViewController" id="gWt-d2-9ML" customClass="PopupContentWithDismissViewController" customModule="SBCardPopupExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Na6-OF-DXZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="fsO-iQ-2wU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mi0-Pu-c4O">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dismiss button example" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyx-X2-glu">
+                                <rect key="frame" x="0.0" y="20" width="250" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ovz-S0-JKo">
+                                <rect key="frame" x="0.0" y="43" width="250" height="1"/>
+                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="ddJ-If-U23"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This popup adopts the SBPopupCardContent protocol so it is able to to dismiss iteslf" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDQ-5w-q6a">
+                                <rect key="frame" x="0.0" y="60" width="250" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👍" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGP-bL-zsx">
+                                <rect key="frame" x="16" y="137" width="218" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQ5-Z5-OLK">
+                                <rect key="frame" x="16" y="189" width="218" height="45"/>
+                                <state key="normal" title="Close"/>
+                                <connections>
+                                    <action selector="closeButtonPressedWithSender:" destination="gWt-d2-9ML" eventType="touchUpInside" id="ecs-Vc-LvF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="OQ5-Z5-OLK" secondAttribute="trailing" id="38H-3w-fiH"/>
+                            <constraint firstAttribute="trailing" secondItem="eyx-X2-glu" secondAttribute="trailing" id="6fO-gK-Z9C"/>
+                            <constraint firstItem="ovz-S0-JKo" firstAttribute="leading" secondItem="eyx-X2-glu" secondAttribute="leading" id="9w3-LV-O2G"/>
+                            <constraint firstItem="mGP-bL-zsx" firstAttribute="top" secondItem="NDQ-5w-q6a" secondAttribute="bottom" constant="16" id="AsH-zP-y78"/>
+                            <constraint firstItem="mGP-bL-zsx" firstAttribute="leading" secondItem="mi0-Pu-c4O" secondAttribute="leadingMargin" id="CcL-8K-SD4"/>
+                            <constraint firstItem="fsO-iQ-2wU" firstAttribute="top" secondItem="OQ5-Z5-OLK" secondAttribute="bottom" constant="16" id="D1y-dB-m26"/>
+                            <constraint firstItem="eyx-X2-glu" firstAttribute="top" secondItem="Na6-OF-DXZ" secondAttribute="bottom" constant="20" id="FbK-JR-FJM"/>
+                            <constraint firstItem="OQ5-Z5-OLK" firstAttribute="top" secondItem="mGP-bL-zsx" secondAttribute="bottom" priority="750" constant="16" id="HJI-Eh-LQB"/>
+                            <constraint firstItem="OQ5-Z5-OLK" firstAttribute="leading" secondItem="mi0-Pu-c4O" secondAttribute="leadingMargin" id="P6f-mI-9TL"/>
+                            <constraint firstItem="eyx-X2-glu" firstAttribute="leading" secondItem="mi0-Pu-c4O" secondAttribute="leading" id="PV8-tc-KKq"/>
+                            <constraint firstItem="ovz-S0-JKo" firstAttribute="top" secondItem="eyx-X2-glu" secondAttribute="bottom" constant="2" id="RHX-g7-ZyO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mGP-bL-zsx" secondAttribute="trailing" id="jYq-I4-owx"/>
+                            <constraint firstAttribute="trailing" secondItem="NDQ-5w-q6a" secondAttribute="trailing" id="kqy-Vn-dld"/>
+                            <constraint firstItem="NDQ-5w-q6a" firstAttribute="top" secondItem="ovz-S0-JKo" secondAttribute="bottom" constant="16" id="te3-nI-Q7S"/>
+                            <constraint firstItem="NDQ-5w-q6a" firstAttribute="leading" secondItem="mi0-Pu-c4O" secondAttribute="leading" id="uE9-IN-YJ2"/>
+                            <constraint firstItem="ovz-S0-JKo" firstAttribute="trailing" secondItem="eyx-X2-glu" secondAttribute="trailing" id="uUO-05-KpN"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="250"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FjL-EA-7No" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1284.8" y="15.292353823088456"/>
+        </scene>
+        <!--Disable Dismiss Popup Content View Controller-->
+        <scene sceneID="kYZ-8f-Dn9">
+            <objects>
+                <viewController storyboardIdentifier="DisableDismissPopupContentViewController" id="5M7-zz-73e" customClass="DisableDismissPopupContentViewController" customModule="SBCardPopupExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NOJ-Jf-84g"/>
+                        <viewControllerLayoutGuide type="bottom" id="5OE-Kh-pxf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ANI-VK-Vts">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="498"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disable Dismiss" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ifk-Bl-QgQ">
+                                <rect key="frame" x="20" y="20" width="210" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5pe-Tm-eGM">
+                                <rect key="frame" x="20" y="61" width="210" height="203"/>
+                                <string key="text">Sometimes you need the user to make a choice, and you don't want them to be able to close the popup
+
+By adopting the SBPopupCard protocol, you can disable the tap away and swipe away behaviour</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🤘" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Yr-QQ-fDv">
+                                <rect key="frame" x="36" y="284" width="178" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fhz-gL-shb">
+                                <rect key="frame" x="25" y="340" width="200" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="bdN-Vu-28z"/>
+                                    <constraint firstAttribute="height" constant="50" id="lwi-X4-eON"/>
+                                </constraints>
+                                <state key="normal" title="Must choose this"/>
+                                <connections>
+                                    <action selector="option1ButtonPressedWithSender:" destination="5M7-zz-73e" eventType="touchUpInside" id="1N3-FZ-51H"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUG-0C-MNi">
+                                <rect key="frame" x="25" y="410" width="200" height="50"/>
+                                <state key="normal" title="Or this"/>
+                                <connections>
+                                    <action selector="option2ButtonPressedWithSender:" destination="5M7-zz-73e" eventType="touchUpInside" id="mDo-bV-CQw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hUG-0C-MNi" firstAttribute="height" secondItem="Fhz-gL-shb" secondAttribute="height" id="1xm-Iz-Ojz"/>
+                            <constraint firstItem="5pe-Tm-eGM" firstAttribute="leading" secondItem="ANI-VK-Vts" secondAttribute="leading" constant="20" id="48T-Nx-wWa"/>
+                            <constraint firstAttribute="trailing" secondItem="5pe-Tm-eGM" secondAttribute="trailing" constant="20" id="5Dc-08-UUY"/>
+                            <constraint firstItem="hUG-0C-MNi" firstAttribute="trailing" secondItem="Fhz-gL-shb" secondAttribute="trailing" id="60R-ZC-6s6"/>
+                            <constraint firstItem="hUG-0C-MNi" firstAttribute="top" secondItem="Fhz-gL-shb" secondAttribute="bottom" constant="20" id="BCi-gb-4aG"/>
+                            <constraint firstItem="6Yr-QQ-fDv" firstAttribute="leading" secondItem="ANI-VK-Vts" secondAttribute="leadingMargin" constant="20" id="BUx-8J-KiY"/>
+                            <constraint firstItem="Ifk-Bl-QgQ" firstAttribute="leading" secondItem="ANI-VK-Vts" secondAttribute="leading" constant="20" id="G3F-6K-BQQ"/>
+                            <constraint firstItem="Ifk-Bl-QgQ" firstAttribute="top" secondItem="ANI-VK-Vts" secondAttribute="topMargin" constant="20" id="JdV-4r-BDF"/>
+                            <constraint firstItem="hUG-0C-MNi" firstAttribute="leading" secondItem="Fhz-gL-shb" secondAttribute="leading" id="LgM-R3-za1"/>
+                            <constraint firstItem="Fhz-gL-shb" firstAttribute="top" secondItem="6Yr-QQ-fDv" secondAttribute="bottom" constant="20" id="Ywh-MB-T6i"/>
+                            <constraint firstItem="Fhz-gL-shb" firstAttribute="centerX" secondItem="ANI-VK-Vts" secondAttribute="centerX" id="bcf-mB-MTn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6Yr-QQ-fDv" secondAttribute="trailing" constant="20" id="cAV-fm-sqP"/>
+                            <constraint firstItem="5OE-Kh-pxf" firstAttribute="top" secondItem="hUG-0C-MNi" secondAttribute="bottom" priority="250" constant="20" id="cVA-5q-Ahc"/>
+                            <constraint firstItem="5pe-Tm-eGM" firstAttribute="top" secondItem="Ifk-Bl-QgQ" secondAttribute="bottom" constant="20" id="n0B-GO-yML"/>
+                            <constraint firstItem="6Yr-QQ-fDv" firstAttribute="top" secondItem="5pe-Tm-eGM" secondAttribute="bottom" constant="20" id="pAO-W9-M1s"/>
+                            <constraint firstAttribute="trailing" secondItem="Ifk-Bl-QgQ" secondAttribute="trailing" constant="20" id="sPp-j7-3jT"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="498"/>
+                    <connections>
+                        <outletCollection property="buttons" destination="Fhz-gL-shb" collectionClass="NSMutableArray" id="T1K-d4-K94"/>
+                        <outletCollection property="buttons" destination="hUG-0C-MNi" collectionClass="NSMutableArray" id="z4J-Uj-8pB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tdc-ag-buh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1768" y="15"/>
         </scene>
     </scenes>
 </document>

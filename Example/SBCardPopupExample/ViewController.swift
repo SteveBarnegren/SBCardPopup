@@ -31,7 +31,10 @@ class ViewController: UIViewController {
     }
     
     func showPopup() {
-        let popupContent = BasicPopupContentViewController.create()
+        //let popupContent = BasicPopupContentViewController.create()
+        //let popupContent = PopupContentWithDismissViewController.create()
+        let popupContent = DisableDismissPopupContentViewController.create()
+
         let cardPopup = SBCardPopupViewController(contentViewController: popupContent)
         
         addChildViewController(cardPopup)
