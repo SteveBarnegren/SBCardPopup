@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SBCardPopupExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +20,62 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O6U-cq-gc3">
+                                <rect key="frame" x="144" y="617" width="86" height="30"/>
+                                <state key="normal" title="Show Popup"/>
+                                <connections>
+                                    <action selector="popupButtonPressedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hxc-4l-f3o"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="O6U-cq-gc3" secondAttribute="bottom" constant="20" id="Gc4-BU-h33"/>
+                            <constraint firstItem="O6U-cq-gc3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zux-Al-WDA"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Basic Popup Content View Controller-->
+        <scene sceneID="oNv-Dp-dOc">
+            <objects>
+                <viewController storyboardIdentifier="BasicPopupContentViewController" id="f0L-4y-GX5" customClass="BasicPopupContentViewController" customModule="SBCardPopupExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b2e-4z-DlF"/>
+                        <viewControllerLayoutGuide type="bottom" id="shB-1V-EFO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iSD-RN-1HY">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi, I'm some content to test with" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHO-tw-yGk">
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+                                <color key="backgroundColor" red="1" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bHO-tw-yGk" firstAttribute="leading" secondItem="iSD-RN-1HY" secondAttribute="leading" id="fVP-YF-1fl"/>
+                            <constraint firstItem="bHO-tw-yGk" firstAttribute="top" secondItem="iSD-RN-1HY" secondAttribute="top" id="kV1-cG-RUZ"/>
+                            <constraint firstItem="shB-1V-EFO" firstAttribute="top" secondItem="bHO-tw-yGk" secondAttribute="bottom" id="t9X-hr-ehx"/>
+                            <constraint firstAttribute="trailing" secondItem="bHO-tw-yGk" secondAttribute="trailing" id="yqn-QK-Vhe"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="250"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xCq-5e-8VY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="764.79999999999995" y="16.191904047976013"/>
         </scene>
     </scenes>
 </document>

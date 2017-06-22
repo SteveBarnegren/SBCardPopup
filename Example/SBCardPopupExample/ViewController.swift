@@ -10,6 +10,8 @@ import UIKit
 import SBCardPopup
 
 class ViewController: UIViewController {
+    
+    var popup: SBCardPopupViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +22,29 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let cardPopup = SBCardPopupViewController()
+        //perform(#selector(showPopup), with: nil, afterDelay: 3)
+        
+    }
+    
+    @IBAction func popupButtonPressed(sender: UIButton){
+        showPopup()
+    }
+    
+    func showPopup() {
+        let popupContent = BasicPopupContentViewController.create()
+        let cardPopup = SBCardPopupViewController(contentViewController: popupContent)
+        
+        addChildViewController(cardPopup)
+        view.addSubview(cardPopup.view)
+        popup = cardPopup
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if let popup = popup {
+            popup.view.frame = view.bounds
+        }
     }
 
 
