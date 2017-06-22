@@ -18,6 +18,7 @@
 		6765DB211EFC480A00B38628 /* BasicPopupContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6765DB201EFC480A00B38628 /* BasicPopupContentViewController.swift */; };
 		6765DB231EFC5B0300B38628 /* PopupContentWithDismissViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6765DB221EFC5B0300B38628 /* PopupContentWithDismissViewController.swift */; };
 		6765DB251EFC60E900B38628 /* DisableDismissPopupContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6765DB241EFC60E900B38628 /* DisableDismissPopupContentViewController.swift */; };
+		6765DB271EFC6E0A00B38628 /* ChangeSizePopupContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6765DB261EFC6E0A00B38628 /* ChangeSizePopupContentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		6765DB201EFC480A00B38628 /* BasicPopupContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicPopupContentViewController.swift; sourceTree = "<group>"; };
 		6765DB221EFC5B0300B38628 /* PopupContentWithDismissViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupContentWithDismissViewController.swift; sourceTree = "<group>"; };
 		6765DB241EFC60E900B38628 /* DisableDismissPopupContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisableDismissPopupContentViewController.swift; sourceTree = "<group>"; };
+		6765DB261EFC6E0A00B38628 /* ChangeSizePopupContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeSizePopupContentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				6765DB201EFC480A00B38628 /* BasicPopupContentViewController.swift */,
 				6765DB221EFC5B0300B38628 /* PopupContentWithDismissViewController.swift */,
 				6765DB241EFC60E900B38628 /* DisableDismissPopupContentViewController.swift */,
+				6765DB261EFC6E0A00B38628 /* ChangeSizePopupContentViewController.swift */,
 				6765DAFD1EFC402600B38628 /* Main.storyboard */,
 				6765DB001EFC402600B38628 /* Assets.xcassets */,
 				6765DB021EFC402600B38628 /* LaunchScreen.storyboard */,
@@ -209,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6765DB271EFC6E0A00B38628 /* ChangeSizePopupContentViewController.swift in Sources */,
 				6765DB231EFC5B0300B38628 /* PopupContentWithDismissViewController.swift in Sources */,
 				6765DAFC1EFC402600B38628 /* ViewController.swift in Sources */,
 				6765DB251EFC60E900B38628 /* DisableDismissPopupContentViewController.swift in Sources */,

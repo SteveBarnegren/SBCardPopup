@@ -239,5 +239,77 @@ By adopting the SBPopupCard protocol, you can disable the tap away and swipe awa
             </objects>
             <point key="canvasLocation" x="1768" y="15"/>
         </scene>
+        <!--Change Size Popup Content View Controller-->
+        <scene sceneID="kwp-rs-hBm">
+            <objects>
+                <viewController storyboardIdentifier="ChangeSizePopupContentViewController" id="rw4-ig-Bjt" customClass="ChangeSizePopupContentViewController" customModule="SBCardPopupExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3cS-LO-Nb6"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mg5-j0-8KK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AJL-Up-2Ss">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ypB-Fb-cdI">
+                                <rect key="frame" x="20" y="20" width="210" height="360"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Changing Size" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWz-6m-h44">
+                                        <rect key="frame" x="0.0" y="0.0" width="210" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popups use autolayout, so if you change your view's constraints, then the popup will change size" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENU-42-jhD">
+                                        <rect key="frame" x="0.0" y="40.5" width="210" height="81.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Like this" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epQ-nd-pUb">
+                                        <rect key="frame" x="0.0" y="142" width="210" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🚀" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dv6-d6-EM0">
+                                        <rect key="frame" x="0.0" y="182.5" width="210" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zO5-Ux-Wp7">
+                                        <rect key="frame" x="0.0" y="238.5" width="210" height="121.5"/>
+                                        <state key="normal" title="Show me"/>
+                                        <connections>
+                                            <action selector="buttonPressedWithSender:" destination="rw4-ig-Bjt" eventType="touchUpInside" id="Dl6-0q-fAH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Mg5-j0-8KK" firstAttribute="top" secondItem="ypB-Fb-cdI" secondAttribute="bottom" constant="20" id="3G9-w1-faY"/>
+                            <constraint firstAttribute="trailing" secondItem="ypB-Fb-cdI" secondAttribute="trailing" constant="20" id="Ebk-Ku-q7q"/>
+                            <constraint firstItem="ypB-Fb-cdI" firstAttribute="top" secondItem="3cS-LO-Nb6" secondAttribute="bottom" constant="20" id="Iad-4x-86m"/>
+                            <constraint firstItem="ypB-Fb-cdI" firstAttribute="leading" secondItem="AJL-Up-2Ss" secondAttribute="leading" constant="20" id="NgI-sM-3DZ"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="400"/>
+                    <connections>
+                        <outlet property="button" destination="zO5-Ux-Wp7" id="73X-my-igk"/>
+                        <outletCollection property="revealViews" destination="epQ-nd-pUb" collectionClass="NSMutableArray" id="2Sm-Rm-esa"/>
+                        <outletCollection property="revealViews" destination="dv6-d6-EM0" collectionClass="NSMutableArray" id="XXu-qH-T05"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mlX-wo-SNY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2272" y="-30.584707646176913"/>
+        </scene>
     </scenes>
 </document>

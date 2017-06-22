@@ -35,11 +35,11 @@ class DisableDismissPopupContentViewController: UIViewController, SBPopupCardCon
     
     // MARK: - Actions
     
-    @IBAction func option1ButtonPressed(sender: UIButton){
+    @IBAction private func option1ButtonPressed(sender: UIButton){
         popupViewController?.close()
     }
     
-    @IBAction func option2ButtonPressed(sender: UIButton){
+    @IBAction private func option2ButtonPressed(sender: UIButton){
         popupViewController?.close()
     }
     
