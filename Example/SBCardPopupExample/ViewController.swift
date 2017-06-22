@@ -11,46 +11,43 @@ import SBCardPopup
 
 class ViewController: UIViewController {
     
-    var popup: SBCardPopupViewController?
+    //var popup: SBCardPopupViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        //perform(#selector(showPopup), with: nil, afterDelay: 3)
-        
-    }
     
-    @IBAction func popupButtonPressed(sender: UIButton){
-        showPopup()
-    }
+    // MARK: - Actions
     
-    func showPopup() {
-        //let popupContent = BasicPopupContentViewController.create()
-        //let popupContent = PopupContentWithDismissViewController.create()
-        //let popupContent = DisableDismissPopupContentViewController.create()
-        let popupContent = ChangeSizePopupContentViewController.create()
+    @IBAction private func example1ButtonPressed(sender: UIButton){
         
+        let popupContent = BasicPopupContentViewController.create()
         let cardPopup = SBCardPopupViewController(contentViewController: popupContent)
-        
-        addChildViewController(cardPopup)
-        view.addSubview(cardPopup.view)
-        popup = cardPopup
+        cardPopup.show(onViewController: self)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    @IBAction private func example2ButtonPressed(sender: UIButton){
         
-        if let popup = popup {
-            popup.view.frame = view.bounds
-        }
+        let popupContent = PopupContentWithDismissViewController.create()
+        let cardPopup = SBCardPopupViewController(contentViewController: popupContent)
+        cardPopup.show(onViewController: self)
     }
-
+    
+    @IBAction private func example3ButtonPressed(sender: UIButton){
+        
+        let popupContent = DisableDismissPopupContentViewController.create()
+        let cardPopup = SBCardPopupViewController(contentViewController: popupContent)
+        cardPopup.show(onViewController: self)
+    }
+    
+    @IBAction private func example4ButtonPressed(sender: UIButton){
+        
+        let popupContent = ChangeSizePopupContentViewController.create()
+        let cardPopup = SBCardPopupViewController(contentViewController: popupContent)
+        cardPopup.show(onViewController: self)
+    }
 
 }
 

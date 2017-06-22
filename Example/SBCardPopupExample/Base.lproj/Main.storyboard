@@ -22,18 +22,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O6U-cq-gc3">
-                                <rect key="frame" x="144" y="617" width="86" height="30"/>
-                                <state key="normal" title="Show Popup"/>
-                                <connections>
-                                    <action selector="popupButtonPressedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hxc-4l-f3o"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SBCardPopup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="loN-og-RSx">
+                                <rect key="frame" x="36" y="40" width="303" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="1tq-eX-FyA">
+                                <rect key="frame" x="56" y="116" width="263" height="511"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZ0-38-90l">
+                                        <rect key="frame" x="0.0" y="0.0" width="263" height="98"/>
+                                        <state key="normal" title="1"/>
+                                        <connections>
+                                            <action selector="example1ButtonPressedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mNn-Si-4sg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uB0-dO-xdo">
+                                        <rect key="frame" x="0.0" y="138" width="263" height="97.5"/>
+                                        <state key="normal" title="2"/>
+                                        <connections>
+                                            <action selector="example2ButtonPressedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1p8-Zi-Ga0"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cmI-qK-eAC">
+                                        <rect key="frame" x="0.0" y="275.5" width="263" height="98"/>
+                                        <state key="normal" title="3"/>
+                                        <connections>
+                                            <action selector="example3ButtonPressedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Bj-YT-aWT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgV-3I-WA7">
+                                        <rect key="frame" x="0.0" y="413.5" width="263" height="97.5"/>
+                                        <state key="normal" title="4"/>
+                                        <connections>
+                                            <action selector="example4ButtonPressedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lOy-Wu-Z8U"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="O6U-cq-gc3" secondAttribute="bottom" constant="20" id="Gc4-BU-h33"/>
-                            <constraint firstItem="O6U-cq-gc3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zux-Al-WDA"/>
+                            <constraint firstItem="loN-og-RSx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="3dI-Ez-M1V"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1tq-eX-FyA" secondAttribute="trailing" constant="40" id="5DQ-B2-X8n"/>
+                            <constraint firstItem="1tq-eX-FyA" firstAttribute="top" secondItem="loN-og-RSx" secondAttribute="bottom" constant="40" id="9oa-Cb-fj9"/>
+                            <constraint firstItem="loN-og-RSx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="DUw-pT-hKw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="loN-og-RSx" secondAttribute="trailing" constant="20" id="Fto-sx-s4s"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1tq-eX-FyA" secondAttribute="bottom" constant="40" id="WyL-H4-iQF"/>
+                            <constraint firstItem="1tq-eX-FyA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="40" id="nY4-0y-bbV"/>
                         </constraints>
                     </view>
                 </viewController>
