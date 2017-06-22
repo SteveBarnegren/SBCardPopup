@@ -73,6 +73,12 @@
                             <constraint firstItem="1tq-eX-FyA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="40" id="nY4-0y-bbV"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outletCollection property="buttons" destination="IZ0-38-90l" collectionClass="NSMutableArray" id="nGo-BC-PW1"/>
+                        <outletCollection property="buttons" destination="uB0-dO-xdo" collectionClass="NSMutableArray" id="Dbf-dY-96n"/>
+                        <outletCollection property="buttons" destination="cmI-qK-eAC" collectionClass="NSMutableArray" id="o3e-Ey-nz0"/>
+                        <outletCollection property="buttons" destination="JgV-3I-WA7" collectionClass="NSMutableArray" id="EvZ-gV-cGM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

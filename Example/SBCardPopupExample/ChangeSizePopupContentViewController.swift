@@ -26,7 +26,7 @@ class ChangeSizePopupContentViewController: UIViewController, SBPopupCardContent
     
     let allowsTapToDismissPopupCard = true
     
-    var isShowingRevealViews = false
+    private var isShowingRevealViews = false
     
     // MARK: - UIViewController
     
@@ -64,7 +64,7 @@ class ChangeSizePopupContentViewController: UIViewController, SBPopupCardContent
         }
     }
     
-    func showRevealViews() {
+    private func showRevealViews() {
         
         UIView.animate(withDuration: 0.3,
                        delay: 0.0,

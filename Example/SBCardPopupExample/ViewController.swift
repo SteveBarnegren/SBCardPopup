@@ -11,11 +11,21 @@ import SBCardPopup
 
 class ViewController: UIViewController {
     
-    //var popup: SBCardPopupViewController?
+    // MARK: - Properties
+    
+    @IBOutlet fileprivate var buttons: [UIButton]!
 
+    // MARK: - UIViewController
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        buttons.forEach({
+            $0.backgroundColor = UIColor.orange
+            $0.layer.cornerRadius = 7
+            $0.setTitleColor(UIColor.white, for: .normal)
+            $0.titleLabel?.font = UIFont.systemFont(ofSize: 40, weight: UIFontWeightBold)
+        })
     
     }
     
@@ -50,4 +60,3 @@ class ViewController: UIViewController {
     }
 
 }
-
