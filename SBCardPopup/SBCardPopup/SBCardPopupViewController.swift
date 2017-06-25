@@ -35,23 +35,8 @@ public class SBCardPopupViewController: UIViewController {
     
     public func show(onViewController viewController: UIViewController) {
         
-        assert(parent == nil, "Cannot present popup card view controller that already has parent view controller")
-        assert(view.superview == nil, "Cannot present popup card view controller whose view already has superview")
-        
-        viewController.addChildViewController(self)
-        viewController.view.addSubview(view)
-        
-        [NSLayoutAttribute.left, .right, .top, .bottom].forEach{
-            
-            let constraint = NSLayoutConstraint(item: view,
-                                                attribute: $0,
-                                                relatedBy: .equal,
-                                                toItem: viewController.view,
-                                                attribute: $0,
-                                                multiplier: 1.0,
-                                                constant: 0)
-            viewController.view.addConstraint(constraint)
-        }
+        self.modalPresentationStyle = .overCurrentContext
+        viewController.present(self, animated: false, completion: nil)
     }
     
     // MARK: - Properties
@@ -260,8 +245,7 @@ public class SBCardPopupViewController: UIViewController {
             self.view.layoutIfNeeded()
         }, completion: {
             _ in
-            self.removeFromParentViewController()
-            self.view.removeFromSuperview()
+            self.dismiss(animated: false, completion: nil)
         })
     }
     
