@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol SBPopupCardContent: class {
+public protocol SBCardPopupContent: class {
     weak var popupViewController: SBCardPopupViewController? {get set}
     var allowsTapToDismissPopupCard: Bool {get}
 }
@@ -50,14 +50,14 @@ public class SBCardPopupViewController: UIViewController {
     
     private var containerOffscreenConstraint: NSLayoutConstraint!
     
-    private var popupProtocolResponder: SBPopupCardContent? {
+    private var popupProtocolResponder: SBCardPopupContent? {
         
         if let contentViewController = contentViewController {
-            if let protocolResponder = contentViewController as? SBPopupCardContent {
+            if let protocolResponder = contentViewController as? SBCardPopupContent {
                 return protocolResponder
             }
         }
-        else if let protocolResponder = contentView as? SBPopupCardContent {
+        else if let protocolResponder = contentView as? SBCardPopupContent {
             return protocolResponder
         }
         

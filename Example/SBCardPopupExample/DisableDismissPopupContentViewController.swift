@@ -9,7 +9,7 @@
 import UIKit
 import SBCardPopup
 
-class DisableDismissPopupContentViewController: UIViewController, SBPopupCardContent {
+class DisableDismissPopupContentViewController: UIViewController, SBCardPopupContent {
     
     static func create() -> UIViewController {
         

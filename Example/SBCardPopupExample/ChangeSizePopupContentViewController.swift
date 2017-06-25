@@ -9,7 +9,7 @@
 import UIKit
 import SBCardPopup
 
-class ChangeSizePopupContentViewController: UIViewController, SBPopupCardContent {
+class ChangeSizePopupContentViewController: UIViewController, SBCardPopupContent {
 
     static func create() -> UIViewController {
         

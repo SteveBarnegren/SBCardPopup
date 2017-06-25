@@ -9,7 +9,7 @@
 import UIKit
 import SBCardPopup
 
-class PopupContentWithDismissViewController: UIViewController, SBPopupCardContent {
+class PopupContentWithDismissViewController: UIViewController, SBCardPopupContent {
     
     weak var popupViewController: SBCardPopupViewController?
     
