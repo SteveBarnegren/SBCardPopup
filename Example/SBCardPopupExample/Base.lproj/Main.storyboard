@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -174,8 +174,8 @@
                             <constraint firstItem="mGP-bL-zsx" firstAttribute="top" secondItem="NDQ-5w-q6a" secondAttribute="bottom" constant="16" id="AsH-zP-y78"/>
                             <constraint firstItem="mGP-bL-zsx" firstAttribute="leading" secondItem="mi0-Pu-c4O" secondAttribute="leadingMargin" id="CcL-8K-SD4"/>
                             <constraint firstItem="fsO-iQ-2wU" firstAttribute="top" secondItem="OQ5-Z5-OLK" secondAttribute="bottom" constant="16" id="D1y-dB-m26"/>
-                            <constraint firstItem="eyx-X2-glu" firstAttribute="top" secondItem="Na6-OF-DXZ" secondAttribute="bottom" constant="20" id="FbK-JR-FJM"/>
                             <constraint firstItem="OQ5-Z5-OLK" firstAttribute="top" secondItem="mGP-bL-zsx" secondAttribute="bottom" priority="750" constant="16" id="HJI-Eh-LQB"/>
+                            <constraint firstItem="eyx-X2-glu" firstAttribute="top" secondItem="mi0-Pu-c4O" secondAttribute="top" constant="20" id="JUC-Kb-qpq"/>
                             <constraint firstItem="OQ5-Z5-OLK" firstAttribute="leading" secondItem="mi0-Pu-c4O" secondAttribute="leadingMargin" id="P6f-mI-9TL"/>
                             <constraint firstItem="eyx-X2-glu" firstAttribute="leading" secondItem="mi0-Pu-c4O" secondAttribute="leading" id="PV8-tc-KKq"/>
                             <constraint firstItem="ovz-S0-JKo" firstAttribute="top" secondItem="eyx-X2-glu" secondAttribute="bottom" constant="2" id="RHX-g7-ZyO"/>
@@ -311,7 +311,7 @@ By adopting the SBPopupCard protocol, you can disable the tap away and swipe awa
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Like this" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epQ-nd-pUb">
                                         <rect key="frame" x="0.0" y="142" width="210" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -335,7 +335,7 @@ By adopting the SBPopupCard protocol, you can disable the tap away and swipe awa
                         <constraints>
                             <constraint firstItem="Mg5-j0-8KK" firstAttribute="top" secondItem="ypB-Fb-cdI" secondAttribute="bottom" constant="20" id="3G9-w1-faY"/>
                             <constraint firstAttribute="trailing" secondItem="ypB-Fb-cdI" secondAttribute="trailing" constant="20" id="Ebk-Ku-q7q"/>
-                            <constraint firstItem="ypB-Fb-cdI" firstAttribute="top" secondItem="3cS-LO-Nb6" secondAttribute="bottom" constant="20" id="Iad-4x-86m"/>
+                            <constraint firstItem="ypB-Fb-cdI" firstAttribute="top" secondItem="AJL-Up-2Ss" secondAttribute="top" constant="20" id="Exs-HF-pHO"/>
                             <constraint firstItem="ypB-Fb-cdI" firstAttribute="leading" secondItem="AJL-Up-2Ss" secondAttribute="leading" constant="20" id="NgI-sM-3DZ"/>
                         </constraints>
                     </view>
