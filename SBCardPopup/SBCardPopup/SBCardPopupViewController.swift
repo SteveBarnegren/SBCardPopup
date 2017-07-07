@@ -163,7 +163,8 @@ public class SBCardPopupViewController: UIViewController {
         case .panning: fallthrough
         case .physicsOut:
             
-            let outPct = 1.0 - (swipeOffset / view.bounds.size.height/2)
+            var outPct = 1.0 - (swipeOffset / view.bounds.size.height/2)
+            outPct = min(outPct, 1.0)
             let opacity = backgroundOpacity * outPct
             view.backgroundColor = UIColor(white: 0, alpha: opacity)
         }
