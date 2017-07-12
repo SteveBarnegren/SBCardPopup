@@ -13,9 +13,8 @@ class PopupContentWithDismissViewController: UIViewController, SBCardPopupConten
     
     weak var popupViewController: SBCardPopupViewController?
     
-    var allowsTapToDismissPopupCard: Bool {
-        return true
-    }
+    let allowsTapToDismissPopupCard = true
+    let allowsSwipeToDismissPopupCard = true
     
     static func create() -> UIViewController {
         

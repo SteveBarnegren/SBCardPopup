@@ -11,6 +11,7 @@ import UIKit
 public protocol SBCardPopupContent: class {
     weak var popupViewController: SBCardPopupViewController? {get set}
     var allowsTapToDismissPopupCard: Bool {get}
+    var allowsSwipeToDismissPopupCard: Bool {get}
 }
 
 public class SBCardPopupViewController: UIViewController {
@@ -45,6 +46,7 @@ public class SBCardPopupViewController: UIViewController {
         case animatingIn
         case idle
         case panning
+        case animatingOut
         case physicsOut(PhysicsState)
     }
     
@@ -63,15 +65,17 @@ public class SBCardPopupViewController: UIViewController {
     private let contentViewController: UIViewController?
     private let contentView: UIView
     
-    private let containerView = UIView(frame: .zero)
+    fileprivate let containerView = UIView(frame: .zero)
     
     private var hasAnimatedIn = false
     
     private var containerOffscreenConstraint: NSLayoutConstraint!
     
+    fileprivate var tapRecognizer: UITapGestureRecognizer!
+    fileprivate var panRecognizer: UIPanGestureRecognizer!
     private var swipeOffset = CGFloat(0)
     
-    private var popupProtocolResponder: SBCardPopupContent? {
+    fileprivate var popupProtocolResponder: SBCardPopupContent? {
         
         if let contentViewController = contentViewController {
             if let protocolResponder = contentViewController as? SBCardPopupContent {
@@ -88,12 +92,12 @@ public class SBCardPopupViewController: UIViewController {
     private var state = State.animatingIn {
         didSet{
             
-            switch state {
-            case .idle: print("STATE: Idle")
-            case .animatingIn: print("STATE: Animating in")
-            case .panning: print("STATE: Panning")
-            case .physicsOut: print("STATE: Physics Out")
-            }
+//            switch state {
+//            case .idle: print("STATE: Idle")
+//            case .animatingIn: print("STATE: Animating in")
+//            case .panning: print("STATE: Panning")
+//            case .physicsOut: print("STATE: Physics Out")
+//            }
         }
     }
     
@@ -129,11 +133,13 @@ public class SBCardPopupViewController: UIViewController {
         containerOffscreenConstraint.isActive = true
         
         // Tap Away Recognizer
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapAway))
+        tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapAway))
+        tapRecognizer.delegate = self
         view.addGestureRecognizer(tapRecognizer)
         
         // Pan Recognizer
-        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan))
+        panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan))
+        panRecognizer.delegate = self
         view.addGestureRecognizer(panRecognizer)
         
         // Display Link
@@ -153,13 +159,26 @@ public class SBCardPopupViewController: UIViewController {
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        // Container View
-        containerView.frame.origin.y += swipeOffset
-      
+        // Elastic Pull upwards
+        if swipeOffset < 0 {
+            
+            let offset = -swipeOffset
+            let offsetPct = (offset / view.bounds.size.width/2)
+            let elasticity = CGFloat(3)
+            let percent = offsetPct / (1.0 + (offsetPct * elasticity))
+
+            containerView.frame.origin.y -= percent * view.bounds.size.width/2
+        }
+        // Regular tracking downwards
+        else{
+            containerView.frame.origin.y += swipeOffset
+        }
+        
         // Update background color if panning or physics out
         switch state {
         case .animatingIn: break
         case .idle: break
+        case .animatingOut: break
         case .panning: fallthrough
         case .physicsOut:
             
@@ -282,6 +301,7 @@ public class SBCardPopupViewController: UIViewController {
     private func animateOut() {
         
         view.isUserInteractionEnabled = false
+        state = .animatingOut
         
         let duration = 0.6
 
@@ -310,6 +330,41 @@ public class SBCardPopupViewController: UIViewController {
         })
     }
     
+    private func animate(fromPan panRecognizer: UIPanGestureRecognizer) {
+        
+        let animateOutThreshold = CGFloat(50)
+        
+        let velocity = panRecognizer.velocity(in: view).y
+        print("Velocity: \(velocity)")
+        
+        // Animate out
+        if velocity > animateOutThreshold {
+            let physicsState = PhysicsState(velocity: velocity)
+            state = .physicsOut(physicsState)
+        }
+        // Snap back
+        else {
+            animateSnapBackToCenter()
+        }
+    }
+    
+    private func animateSnapBackToCenter() {
+    
+        let duration = 0.4
+        
+        swipeOffset = 0
+        view.setNeedsLayout()
+        
+        UIView.animate(withDuration: duration,
+                       delay: 0.0,
+                       usingSpringWithDamping: 0.7,
+                       initialSpringVelocity: 0,
+                       options: [],
+                       animations: {
+                        self.view.layoutIfNeeded()
+        }, completion: { _ in })
+    }
+
     // MARK: - Gestures
     
     @objc private func tapAway() {
@@ -326,14 +381,10 @@ public class SBCardPopupViewController: UIViewController {
     }
     
     @objc private func didPan(recognizer: UIPanGestureRecognizer) {
-        print("did pan")
         
         guard
             state == .idle || state == .panning
             else { return }
-        
-        let location = recognizer.location(in: view)
-        print("Location: \(location)")
         
         let applyOffset = {
             self.swipeOffset = recognizer.translation(in: self.view).y
@@ -353,26 +404,9 @@ public class SBCardPopupViewController: UIViewController {
         case .failed:
             break
         case .ended:
-            animateOut(fromPan: recognizer)
+            animate(fromPan: recognizer)
         }
     
-    }
-    
-    private func animateOut(fromPan panRecognizer: UIPanGestureRecognizer) {
-        
-//        let animateOutThreshold = CGFloat(50)
-//        
-//        let velocity = panRecognizer.velocity(in: view).y
-//        let magnitude = fabs(velocity)
-//        
-//        if magnitude > animateOutThreshold {
-//            
-//        }
-        
-        let velocity = panRecognizer.velocity(in: view).y
-        
-        let physicsState = PhysicsState(velocity: velocity)
-        state = .physicsOut(physicsState)
     }
     
     // MARK: - Display Link
@@ -397,7 +431,7 @@ public class SBCardPopupViewController: UIViewController {
             return
         }
 
-        print("tick")
+        //print("tick")
         physicsState.velocity += CGFloat(dt) * physicsState.acceleration
         
         swipeOffset += physicsState.velocity * CGFloat(dt)
@@ -412,6 +446,25 @@ public class SBCardPopupViewController: UIViewController {
         
     }
     
+}
+
+extension SBCardPopupViewController: UIGestureRecognizerDelegate {
+    
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        
+        // Pan, check if swipe enabled
+        if let responder = popupProtocolResponder, gestureRecognizer === panRecognizer {
+            return responder.allowsSwipeToDismissPopupCard
+        }
+        
+        // Tap, check if is outside view
+        if gestureRecognizer === tapRecognizer {
+            let location = tapRecognizer.location(in: view)
+            return !containerView.frame.contains(location)
+        }
+        
+        return true
+    }
 }
 
 func ==(lhs: SBCardPopupViewController.State, rhs: SBCardPopupViewController.State) -> Bool {
