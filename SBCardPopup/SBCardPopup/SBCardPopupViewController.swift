@@ -18,6 +18,9 @@ public class SBCardPopupViewController: UIViewController {
     
     // MARK: - Public Interface
     
+    public var disableSwipeToDismiss = false
+    public var disableTapToDismiss = false
+
     public init(contentViewController viewController: UIViewController) {
         contentViewController = viewController
         contentView = viewController.view
@@ -465,11 +468,21 @@ extension SBCardPopupViewController: UIGestureRecognizerDelegate {
         
         // Pan, check if swipe enabled
         if let responder = popupProtocolResponder, gestureRecognizer === panRecognizer {
+            
+            if self.disableSwipeToDismiss {
+                return false
+            }
+            
             return responder.allowsSwipeToDismissPopupCard
         }
         
         // Tap, check if is outside view
         if gestureRecognizer === tapRecognizer {
+            
+            if self.disableTapToDismiss {
+                return false
+            }
+            
             let location = tapRecognizer.location(in: view)
             return !containerView.frame.contains(location)
         }
