@@ -73,6 +73,7 @@ public class SBCardPopupViewController: UIViewController {
     
     fileprivate var tapRecognizer: UITapGestureRecognizer!
     fileprivate var panRecognizer: UIPanGestureRecognizer!
+    
     private var swipeOffset = CGFloat(0)
     
     fileprivate var popupProtocolResponder: SBCardPopupContent? {
@@ -174,19 +175,6 @@ public class SBCardPopupViewController: UIViewController {
             containerView.frame.origin.y += swipeOffset
         }
         
-        // Update background color if panning or physics out
-        switch state {
-        case .animatingIn: break
-        case .idle: break
-        case .animatingOut: break
-        case .panning: fallthrough
-        case .physicsOut:
-            
-            var outPct = 1.0 - (swipeOffset / view.bounds.size.height/2)
-            outPct = min(outPct, 1.0)
-            let opacity = backgroundOpacity * outPct
-            view.backgroundColor = UIColor(white: 0, alpha: opacity)
-        }
     }
     
     // MARK: - Constraints
@@ -275,7 +263,7 @@ public class SBCardPopupViewController: UIViewController {
         // Animate background color
         UIView.animate(withDuration: duration,
                        delay: 0.0,
-                       options: [.curveEaseInOut],
+                       options: [.curveEaseInOut, .allowUserInteraction],
                        animations: {
                         self.view.backgroundColor = UIColor(white: 0, alpha: self.backgroundOpacity)
         }, completion: nil)
@@ -288,7 +276,7 @@ public class SBCardPopupViewController: UIViewController {
                        delay: 0.0,
                        usingSpringWithDamping: 0.8,
                        initialSpringVelocity: 0,
-                       options: [],
+                       options: [.allowUserInteraction],
                        animations: {
             self.view.layoutIfNeeded()
         }, completion: {
@@ -382,6 +370,12 @@ public class SBCardPopupViewController: UIViewController {
     
     @objc private func didPan(recognizer: UIPanGestureRecognizer) {
         
+        if state == .animatingIn {
+            state = .idle
+            self.view.layer.removeAllAnimations()
+            self.containerView.layer.removeAllAnimations()
+        }
+        
         guard
             state == .idle || state == .panning
             else { return }
@@ -398,6 +392,7 @@ public class SBCardPopupViewController: UIViewController {
             state = .panning
             applyOffset()
         case .changed:
+            state = .panning
             applyOffset()
         case .cancelled:
             break
@@ -413,6 +408,7 @@ public class SBCardPopupViewController: UIViewController {
     
     func tick() {
         
+        
         // We need a previous time stamp to work with, bail if we don't have one
         guard let last = lastTimeStamp else{
             lastTimeStamp = displayLink.timestamp
@@ -424,14 +420,29 @@ public class SBCardPopupViewController: UIViewController {
         
         // Save the current time
         lastTimeStamp = displayLink.timestamp
-
         
-        // If we're using physics to animate out, update
+        // Update background color if panning or physics out
+        switch state {
+        case .animatingIn: break
+        case .idle: break
+        case .animatingOut: break
+        case .panning: fallthrough
+        case .physicsOut:
+
+            let distance = view.bounds.size.height/2 + contentView.frame.size.height/2
+
+            var outPct = 1.0 - (swipeOffset / distance)
+            outPct = min(outPct, 1.0)
+            let opacity = backgroundOpacity * outPct
+            view.backgroundColor = UIColor(white: 0, alpha: opacity)
+        }
+
+
+        // If we're using physics to animate out, update the simulation
         guard case var State.physicsOut(physicsState) = state else {
             return
         }
 
-        //print("tick")
         physicsState.velocity += CGFloat(dt) * physicsState.acceleration
         
         swipeOffset += physicsState.velocity * CGFloat(dt)
