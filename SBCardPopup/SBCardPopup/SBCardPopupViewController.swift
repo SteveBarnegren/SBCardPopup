@@ -258,7 +258,7 @@ public class SBCardPopupViewController: UIViewController {
     
     private func animateIn() {
         
-        let duration = 0.45
+        let duration = 0.49
         
         // Animate background color
         UIView.animate(withDuration: duration,
@@ -274,7 +274,7 @@ public class SBCardPopupViewController: UIViewController {
         
         UIView.animate(withDuration: duration,
                        delay: 0.0,
-                       usingSpringWithDamping: 0.83,
+                       usingSpringWithDamping: 0.84,
                        initialSpringVelocity: 0,
                        options: [.allowUserInteraction],
                        animations: {
