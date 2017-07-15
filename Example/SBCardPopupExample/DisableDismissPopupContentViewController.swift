@@ -47,10 +47,7 @@ class DisableDismissPopupContentViewController: UIViewController, SBCardPopupCon
     
     weak var popupViewController: SBCardPopupViewController?
     
-    var allowsTapToDismissPopupCard: Bool {
-        return false
-    }
-
-
+    let allowsTapToDismissPopupCard = false
+    let allowsSwipeToDismissPopupCard = false
 
 }

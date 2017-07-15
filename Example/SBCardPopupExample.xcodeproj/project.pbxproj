@@ -155,7 +155,8 @@
 				TargetAttributes = {
 					6765DAF51EFC402600B38628 = {
 						CreatedOnToolsVersion = 8.3;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 57B8T35GZ4;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -351,10 +352,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 57B8T35GZ4;
 				INFOPLIST_FILE = SBCardPopupExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SteveBarnegren.SBCardPopupExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4a27b31a-d6bc-4261-882a-6bc3907e5dac";
+				PROVISIONING_PROFILE_SPECIFIER = InHouseWildcard;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -364,10 +369,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 57B8T35GZ4;
 				INFOPLIST_FILE = SBCardPopupExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SteveBarnegren.SBCardPopupExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4a27b31a-d6bc-4261-882a-6bc3907e5dac";
+				PROVISIONING_PROFILE_SPECIFIER = InHouseWildcard;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

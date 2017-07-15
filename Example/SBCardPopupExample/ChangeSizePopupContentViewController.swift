@@ -25,6 +25,7 @@ class ChangeSizePopupContentViewController: UIViewController, SBCardPopupContent
     weak var popupViewController: SBCardPopupViewController?
     
     let allowsTapToDismissPopupCard = true
+    let allowsSwipeToDismissPopupCard = true
     
     private var isShowingRevealViews = false
     
