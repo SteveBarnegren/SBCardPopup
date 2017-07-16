@@ -169,7 +169,7 @@ public class SBCardPopupViewController: UIViewController {
             containerView.frame.origin.y += swipeOffset
         }
         
-        // Update background color if panning or physics out
+        // Update background color and card opacity if panning or physics out
         switch state {
         case .animatingIn: break
         case .idle: break
@@ -183,6 +183,8 @@ public class SBCardPopupViewController: UIViewController {
             outPct = min(outPct, 1.0)
             let opacity = backgroundOpacity * outPct
             view.backgroundColor = UIColor(white: 0, alpha: opacity)
+            
+            containerView.alpha = outPct
         }
 
     }
