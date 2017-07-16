@@ -94,17 +94,7 @@ public class SBCardPopupViewController: UIViewController {
         return nil
     }
     
-    private var state = State.animatingIn {
-        didSet{
-            
-//            switch state {
-//            case .idle: print("STATE: Idle")
-//            case .animatingIn: print("STATE: Animating in")
-//            case .panning: print("STATE: Panning")
-//            case .physicsOut: print("STATE: Physics Out")
-//            }
-        }
-    }
+    private var state = State.animatingIn
     
     // MARK: - UIViewController
     
@@ -179,6 +169,22 @@ public class SBCardPopupViewController: UIViewController {
             containerView.frame.origin.y += swipeOffset
         }
         
+        // Update background color if panning or physics out
+        switch state {
+        case .animatingIn: break
+        case .idle: break
+        case .animatingOut: break
+        case .panning: fallthrough
+        case .physicsOut:
+            
+            let distance = view.bounds.size.height/2 + contentView.frame.size.height/2
+            
+            var outPct = 1.0 - (swipeOffset / distance)
+            outPct = min(outPct, 1.0)
+            let opacity = backgroundOpacity * outPct
+            view.backgroundColor = UIColor(white: 0, alpha: opacity)
+        }
+
     }
     
     // MARK: - Constraints
@@ -424,23 +430,6 @@ public class SBCardPopupViewController: UIViewController {
         
         // Save the current time
         lastTimeStamp = displayLink.timestamp
-        
-        // Update background color if panning or physics out
-        switch state {
-        case .animatingIn: break
-        case .idle: break
-        case .animatingOut: break
-        case .panning: fallthrough
-        case .physicsOut:
-
-            let distance = view.bounds.size.height/2 + contentView.frame.size.height/2
-
-            var outPct = 1.0 - (swipeOffset / distance)
-            outPct = min(outPct, 1.0)
-            let opacity = backgroundOpacity * outPct
-            view.backgroundColor = UIColor(white: 0, alpha: opacity)
-        }
-
 
         // If we're using physics to animate out, update the simulation
         guard case var State.physicsOut(physicsState) = state else {
