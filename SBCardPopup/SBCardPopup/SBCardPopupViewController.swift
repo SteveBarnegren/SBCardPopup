@@ -20,6 +20,7 @@ public class SBCardPopupViewController: UIViewController {
     
     public var disableSwipeToDismiss = false
     public var disableTapToDismiss = false
+    public var cornerRadius = CGFloat(7)
 
     public init(contentViewController viewController: UIViewController) {
         contentViewController = viewController
@@ -117,7 +118,7 @@ public class SBCardPopupViewController: UIViewController {
         view.backgroundColor = UIColor.clear
         
         // Container view
-        containerView.layer.cornerRadius = 5
+        containerView.layer.cornerRadius = cornerRadius
         containerView.layer.masksToBounds = true
         view.addSubview(containerView)
         containerView.isUserInteractionEnabled = false
