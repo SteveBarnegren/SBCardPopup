@@ -58,5 +58,20 @@ class ViewController: UIViewController {
         let cardPopup = SBCardPopupViewController(contentViewController: popupContent)
         cardPopup.show(onViewController: self)
     }
+   
+    @IBAction private func example5ButtonPressed(sender: UIButton){
+        
+        let label = UILabel(frame: .zero)
+        label.text = "If you prefer, you can supply a UIView subclass instead of UIViewController\n\nThis card is a UILabel"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightBold)
+        label.backgroundColor = UIColor.white
+        label.textColor = UIColor.darkText
+        label.numberOfLines = 0
+        
+        let cardPopup = SBCardPopupViewController(contentView: label)
+        cardPopup.show(onViewController: self)
+    }
+    
 
 }
