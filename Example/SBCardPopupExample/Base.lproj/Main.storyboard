@@ -116,7 +116,7 @@
                                         <rect key="frame" x="0.0" y="40.5" width="210" height="101.5"/>
                                         <string key="text">To Dismiss:
 
-- Tap ouside the popup
+- Tap outside the popup
 - Swipe down anywhere on the screen</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -375,6 +375,52 @@ By adopting the SBPopupCard protocol, you can disable the tap away and swipe awa
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mlX-wo-SNY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2272" y="-30.584707646176913"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Bhp-S5-FjD">
+            <objects>
+                <viewController id="Yt7-PV-SjP" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ABB-5z-ypl"/>
+                        <viewControllerLayoutGuide type="bottom" id="Iov-cc-C8r"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QJV-UT-mQb">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="188"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I'm pinned to the top" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWw-mO-nkz">
+                                <rect key="frame" x="20" y="20" width="210" height="60"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="245" text="I'm pinned to the top label and the bottom" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.050000000000000003" translatesAutoresizingMaskIntoConstraints="NO" id="UO1-O3-jBV">
+                                <rect key="frame" x="20" y="100" width="210" height="68"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Iov-cc-C8r" firstAttribute="top" secondItem="UO1-O3-jBV" secondAttribute="bottom" priority="250" constant="20" id="2sh-OH-tLf"/>
+                            <constraint firstAttribute="trailing" secondItem="ZWw-mO-nkz" secondAttribute="trailing" constant="20" id="6o3-aa-sIb"/>
+                            <constraint firstAttribute="trailing" secondItem="UO1-O3-jBV" secondAttribute="trailing" constant="20" id="VeC-VX-2aL"/>
+                            <constraint firstItem="UO1-O3-jBV" firstAttribute="top" secondItem="ZWw-mO-nkz" secondAttribute="bottom" constant="20" id="aQH-Jt-dIO"/>
+                            <constraint firstItem="UO1-O3-jBV" firstAttribute="leading" secondItem="QJV-UT-mQb" secondAttribute="leading" constant="20" id="kX6-kf-g3R"/>
+                            <constraint firstItem="ZWw-mO-nkz" firstAttribute="leading" secondItem="QJV-UT-mQb" secondAttribute="leading" constant="20" id="phq-Fa-0Zr"/>
+                            <constraint firstItem="ZWw-mO-nkz" firstAttribute="top" secondItem="QJV-UT-mQb" secondAttribute="topMargin" constant="20" id="yCA-gj-aVu"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="188"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Ro-PQ-LXL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2954" y="-97"/>
         </scene>
     </scenes>
 </document>
