@@ -238,7 +238,7 @@ public class SBCardPopupViewController: UIViewController {
                                          attribute: .centerY,
                                          multiplier: 1.0,
                                          constant: 0)
-        centreY.priority = UILayoutPriorityDefaultLow
+        centreY.priority = UILayoutPriority.defaultLow
         
         let limitHeight = NSLayoutConstraint(item: containerView,
                                              attribute: .height,
@@ -247,7 +247,7 @@ public class SBCardPopupViewController: UIViewController {
                                              attribute: .height,
                                              multiplier: 1.0,
                                              constant: -verticalMargins*2)
-        limitHeight.priority = UILayoutPriorityDefaultHigh
+        limitHeight.priority = UILayoutPriority.defaultHigh
         
         containerOffscreenConstraint = NSLayoutConstraint(item: containerView,
                                            attribute: .top,
@@ -256,7 +256,7 @@ public class SBCardPopupViewController: UIViewController {
                                            attribute: .bottom,
                                            multiplier: 1.0,
                                            constant: 0)
-        containerOffscreenConstraint.priority = UILayoutPriorityRequired
+        containerOffscreenConstraint.priority = UILayoutPriority.required
         
         view.addConstraints([left, right, centreY, limitHeight, containerOffscreenConstraint])
     }
@@ -418,7 +418,7 @@ public class SBCardPopupViewController: UIViewController {
     
     // MARK: - Display Link
     
-    func tick() {
+    @objc func tick() {
         
         
         // We need a previous time stamp to work with, bail if we don't have one

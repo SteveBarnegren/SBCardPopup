@@ -24,7 +24,7 @@ class ViewController: UIViewController {
             $0.backgroundColor = UIColor.orange
             $0.layer.cornerRadius = 7
             $0.setTitleColor(UIColor.white, for: .normal)
-            $0.titleLabel?.font = UIFont.systemFont(ofSize: 40, weight: UIFontWeightBold)
+            $0.titleLabel?.font = UIFont.systemFont(ofSize: 40, weight: UIFont.Weight.bold)
         })
     
     }
@@ -64,7 +64,7 @@ class ViewController: UIViewController {
         let label = UILabel(frame: .zero)
         label.text = "If you prefer, you can supply a UIView subclass instead of UIViewController\n\nThis card is a UILabel"
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightBold)
+        label.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.bold)
         label.backgroundColor = UIColor.white
         label.textColor = UIColor.darkText
         label.numberOfLines = 0
