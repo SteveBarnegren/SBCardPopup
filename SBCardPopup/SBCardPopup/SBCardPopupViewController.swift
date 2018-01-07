@@ -73,6 +73,7 @@ public class SBCardPopupViewController: UIViewController {
     
     private var hasAnimatedIn = false
     
+    private var containerCenterYConstraint: NSLayoutConstraint!
     private var containerOffscreenConstraint: NSLayoutConstraint!
     
     fileprivate var tapRecognizer: UITapGestureRecognizer!
@@ -151,8 +152,8 @@ public class SBCardPopupViewController: UIViewController {
         }
     }
     
-    public override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    public override func updateViewConstraints() {
+        super.updateViewConstraints()
         
         // Elastic Pull upwards
         if swipeOffset < 0 {
@@ -161,13 +162,24 @@ public class SBCardPopupViewController: UIViewController {
             let offsetPct = (offset / view.bounds.size.width/2)
             let elasticity = CGFloat(3)
             let percent = offsetPct / (1.0 + (offsetPct * elasticity))
-
-            containerView.frame.origin.y -= percent * view.bounds.size.width/2
+            
+            //containerView.frame.origin.y -= percent * view.bounds.size.width/2
+            containerCenterYConstraint.constant = -(percent * view.bounds.size.width/2)
         }
-        // Regular tracking downwards
+            // Regular tracking downwards
         else{
-            containerView.frame.origin.y += swipeOffset
+            
+            //            if arc4random() % 2 == 0 {
+            //                return
+            //            }
+            containerCenterYConstraint.constant = swipeOffset
+            //containerView.frame.origin.y += swipeOffset
         }
+        
+    }
+    
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
         // Update background color and card opacity if panning or physics out
         switch state {
@@ -176,6 +188,8 @@ public class SBCardPopupViewController: UIViewController {
         case .animatingOut: break
         case .panning: fallthrough
         case .physicsOut:
+            
+            print("Physics out layout")
             
             let distance = view.bounds.size.height/2 + contentView.frame.size.height/2
             
@@ -231,14 +245,14 @@ public class SBCardPopupViewController: UIViewController {
                                        multiplier: 1.0,
                                        constant: -sideMargin)
         
-        let centreY = NSLayoutConstraint(item: containerView,
+        containerCenterYConstraint = NSLayoutConstraint(item: containerView,
                                          attribute: .centerY,
                                          relatedBy: .equal,
                                          toItem: view,
                                          attribute: .centerY,
                                          multiplier: 1.0,
                                          constant: 0)
-        centreY.priority = UILayoutPriority.defaultLow
+        containerCenterYConstraint.priority = UILayoutPriority.defaultLow
         
         let limitHeight = NSLayoutConstraint(item: containerView,
                                              attribute: .height,
@@ -258,7 +272,7 @@ public class SBCardPopupViewController: UIViewController {
                                            constant: 0)
         containerOffscreenConstraint.priority = UILayoutPriority.required
         
-        view.addConstraints([left, right, centreY, limitHeight, containerOffscreenConstraint])
+        view.addConstraints([left, right, containerCenterYConstraint, limitHeight, containerOffscreenConstraint])
     }
     
     private func pinContainerOffscreen(_ pinOffscreen: Bool) {
@@ -353,7 +367,8 @@ public class SBCardPopupViewController: UIViewController {
         let duration = 0.4
         
         swipeOffset = 0
-        view.setNeedsLayout()
+        view.setNeedsUpdateConstraints()
+        //view.setNeedsLayout()
         
         UIView.animate(withDuration: duration,
                        delay: 0.0,
@@ -394,7 +409,8 @@ public class SBCardPopupViewController: UIViewController {
         
         let applyOffset = {
             self.swipeOffset = recognizer.translation(in: self.view).y
-            self.view.setNeedsLayout()
+            self.view.setNeedsUpdateConstraints()
+            //self.view.setNeedsLayout()
         }
         
         switch recognizer.state {
@@ -420,33 +436,40 @@ public class SBCardPopupViewController: UIViewController {
     
     @objc func tick() {
         
+        print("**** TICK ****")
         
         // We need a previous time stamp to work with, bail if we don't have one
-        guard let last = lastTimeStamp else{
+        guard let last = lastTimeStamp else {
             lastTimeStamp = displayLink.timestamp
+            print("RETURN: No last time stamp")
             return
         }
         
         // Work out dt
         let dt = displayLink.timestamp - last
+        print("dt: \(dt)")
         
         // Save the current time
         lastTimeStamp = displayLink.timestamp
 
         // If we're using physics to animate out, update the simulation
         guard case var State.physicsOut(physicsState) = state else {
+            print("RETURN: not animating out state")
             return
         }
 
         physicsState.velocity += CGFloat(dt) * physicsState.acceleration
+        print("Velocity: \(physicsState.velocity)")
         
         swipeOffset += physicsState.velocity * CGFloat(dt)
-        
+        print("Swipe offset: \(swipeOffset)")
+
         view.setNeedsLayout()
         state = .physicsOut(physicsState)
         
         // Remove if the content view is off screen
         if swipeOffset > view.bounds.size.height / 2 {
+            print("RETURN: dismiss")
             dismiss(animated: false, completion: nil)
         }
         
