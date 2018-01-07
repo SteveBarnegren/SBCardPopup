@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SBCardPopup'
-  s.version          = '0.2.0'
+  s.version          = '0.2.1'
   s.summary          = 'Show a view in a card popup UI'
 
   s.description      = <<-DESC
