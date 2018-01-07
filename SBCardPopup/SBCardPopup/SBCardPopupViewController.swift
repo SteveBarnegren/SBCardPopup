@@ -163,17 +163,11 @@ public class SBCardPopupViewController: UIViewController {
             let elasticity = CGFloat(3)
             let percent = offsetPct / (1.0 + (offsetPct * elasticity))
             
-            //containerView.frame.origin.y -= percent * view.bounds.size.width/2
             containerCenterYConstraint.constant = -(percent * view.bounds.size.width/2)
         }
             // Regular tracking downwards
         else{
-            
-            //            if arc4random() % 2 == 0 {
-            //                return
-            //            }
             containerCenterYConstraint.constant = swipeOffset
-            //containerView.frame.origin.y += swipeOffset
         }
         
     }
@@ -296,8 +290,8 @@ public class SBCardPopupViewController: UIViewController {
         
         // Animate container on screen
         containerOffscreenConstraint.isActive = false
-        view.setNeedsLayout()
-        
+        self.view.setNeedsUpdateConstraints()
+
         UIView.animate(withDuration: duration,
                        delay: 0.0,
                        usingSpringWithDamping: 0.84,
@@ -329,7 +323,7 @@ public class SBCardPopupViewController: UIViewController {
         
         // Animate container off screen
         containerOffscreenConstraint.isActive = true
-        view.setNeedsLayout()
+        view.setNeedsUpdateConstraints()
         
         UIView.animate(withDuration: duration,
                        delay: 0.0,
@@ -410,7 +404,6 @@ public class SBCardPopupViewController: UIViewController {
         let applyOffset = {
             self.swipeOffset = recognizer.translation(in: self.view).y
             self.view.setNeedsUpdateConstraints()
-            //self.view.setNeedsLayout()
         }
         
         switch recognizer.state {
