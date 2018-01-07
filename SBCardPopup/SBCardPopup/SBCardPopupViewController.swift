@@ -152,6 +152,11 @@ public class SBCardPopupViewController: UIViewController {
         }
     }
     
+    public override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        displayLink.invalidate()
+    }
+    
     public override func updateViewConstraints() {
         super.updateViewConstraints()
         
@@ -182,8 +187,6 @@ public class SBCardPopupViewController: UIViewController {
         case .animatingOut: break
         case .panning: fallthrough
         case .physicsOut:
-            
-            print("Physics out layout")
             
             let distance = view.bounds.size.height/2 + contentView.frame.size.height/2
             
@@ -343,7 +346,6 @@ public class SBCardPopupViewController: UIViewController {
         let animateOutThreshold = CGFloat(50)
         
         let velocity = panRecognizer.velocity(in: view).y
-        print("Velocity: \(velocity)")
         
         // Animate out
         if velocity > animateOutThreshold {
@@ -429,40 +431,32 @@ public class SBCardPopupViewController: UIViewController {
     
     @objc func tick() {
         
-        print("**** TICK ****")
-        
         // We need a previous time stamp to work with, bail if we don't have one
         guard let last = lastTimeStamp else {
             lastTimeStamp = displayLink.timestamp
-            print("RETURN: No last time stamp")
             return
         }
         
         // Work out dt
         let dt = displayLink.timestamp - last
-        print("dt: \(dt)")
         
         // Save the current time
         lastTimeStamp = displayLink.timestamp
 
         // If we're using physics to animate out, update the simulation
         guard case var State.physicsOut(physicsState) = state else {
-            print("RETURN: not animating out state")
             return
         }
 
         physicsState.velocity += CGFloat(dt) * physicsState.acceleration
-        print("Velocity: \(physicsState.velocity)")
         
         swipeOffset += physicsState.velocity * CGFloat(dt)
-        print("Swipe offset: \(swipeOffset)")
 
-        view.setNeedsLayout()
+        view.setNeedsUpdateConstraints()
         state = .physicsOut(physicsState)
         
         // Remove if the content view is off screen
         if swipeOffset > view.bounds.size.height / 2 {
-            print("RETURN: dismiss")
             dismiss(animated: false, completion: nil)
         }
         
