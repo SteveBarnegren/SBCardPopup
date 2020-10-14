@@ -15,6 +15,7 @@ TODO: Show a UIViewController of UIView in a card popup UI. SBCardPopup handles 
 
   s.ios.deployment_target = '12.0'
 
+  s.swift_version = '5.0'
   s.source_files = 'SBCardPopup/SBCardPopup/**/*.swift'
   s.frameworks = 'UIKit'
 end
