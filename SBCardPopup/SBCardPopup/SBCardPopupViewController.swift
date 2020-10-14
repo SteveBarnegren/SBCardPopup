@@ -434,6 +434,8 @@ public class SBCardPopupViewController: UIViewController {
             break
         case .ended:
             animate(fromPan: recognizer)
+        @unknown default:
+            break
         }
     
     }
