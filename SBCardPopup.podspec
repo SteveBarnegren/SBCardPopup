@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SBCardPopup'
-  s.version          = '0.2.1'
+  s.version          = '0.3.0'
   s.summary          = 'Show a view in a card popup UI'
 
   s.description      = <<-DESC
@@ -13,7 +13,7 @@ TODO: Show a UIViewController of UIView in a card popup UI. SBCardPopup handles 
   s.source           = { :git => 'https://github.com/SteveBarnegren/SBCardPopup.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/stevebarnegren'
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '12.0'
 
   s.source_files = 'SBCardPopup/SBCardPopup/**/*.swift'
   s.frameworks = 'UIKit'
