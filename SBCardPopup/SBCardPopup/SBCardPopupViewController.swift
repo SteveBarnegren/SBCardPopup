@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol SBCardPopupContent: class {
-    weak var popupViewController: SBCardPopupViewController? {get set}
+    var popupViewController: SBCardPopupViewController? {get set}
     var allowsTapToDismissPopupCard: Bool {get}
     var allowsSwipeToDismissPopupCard: Bool {get}
 }
@@ -116,7 +116,7 @@ public class SBCardPopupViewController: UIViewController {
         
         // Content
         if let contentViewController = contentViewController {
-            addChildViewController(contentViewController)
+            addChild(contentViewController)
         }
         containerView.addSubview(contentView)
         
@@ -140,7 +140,7 @@ public class SBCardPopupViewController: UIViewController {
         
         // Display Link
         displayLink = CADisplayLink(target: self, selector: #selector(tick))
-        displayLink.add(to: .current, forMode: .commonModes)
+        displayLink.add(to: .current, forMode: RunLoop.Mode.common)
     }
     
     public override func viewDidAppear(_ animated: Bool) {
@@ -206,7 +206,7 @@ public class SBCardPopupViewController: UIViewController {
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
-        [NSLayoutAttribute.left, .right, .top, .bottom].forEach{
+        [NSLayoutConstraint.Attribute.left, .right, .top, .bottom].forEach{
             
             let constraint = NSLayoutConstraint(item: contentView,
                                                 attribute: $0,

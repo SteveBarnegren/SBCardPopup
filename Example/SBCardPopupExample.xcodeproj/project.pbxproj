@@ -155,7 +155,7 @@
 					6765DAF51EFC402600B38628 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = VAA3W4LPY2;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 1200;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -165,6 +165,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -372,7 +373,7 @@
 				PROVISIONING_PROFILE = "9a6cfdde-fec1-4cf8-b5ce-8dc4492fa36b";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard-iOS-Development";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -390,7 +391,7 @@
 				PROVISIONING_PROFILE = "9a6cfdde-fec1-4cf8-b5ce-8dc4492fa36b";
 				PROVISIONING_PROFILE_SPECIFIER = "Wildcard-iOS-Development";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
