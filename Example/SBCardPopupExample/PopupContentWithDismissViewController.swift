@@ -11,8 +11,7 @@ import SBCardPopup
 
 class PopupContentWithDismissViewController: UIViewController, SBCardPopupContent {
     
-    weak var popupViewController: SBCardPopupViewController?
-    
+    var popupDismisser: SBCardPopupDismisser?
     let allowsTapToDismissPopupCard = true
     let allowsSwipeToDismissPopupCard = true
     
@@ -29,7 +28,7 @@ class PopupContentWithDismissViewController: UIViewController, SBCardPopupConten
     }
     
     @IBAction func closeButtonPressed(sender: UIButton){
-        popupViewController?.close()
+        popupDismisser?.dismiss()
     }
 
 }

@@ -10,7 +10,7 @@ import UIKit
 import SBCardPopup
 
 class ChangeSizePopupContentViewController: UIViewController, SBCardPopupContent {
-
+    
     static func create() -> UIViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -22,8 +22,8 @@ class ChangeSizePopupContentViewController: UIViewController, SBCardPopupContent
     
     @IBOutlet fileprivate var revealViews: [UIView]!
     @IBOutlet weak fileprivate var button: UIButton!
-    weak var popupViewController: SBCardPopupViewController?
     
+    var popupDismisser: SBCardPopupDismisser?
     let allowsTapToDismissPopupCard = true
     let allowsSwipeToDismissPopupCard = true
     
@@ -45,7 +45,7 @@ class ChangeSizePopupContentViewController: UIViewController, SBCardPopupContent
     @IBAction private func buttonPressed(sender: UIButton){
         
         if isShowingRevealViews {
-            popupViewController?.close()
+            popupDismisser?.dismiss()
             return
         }
         

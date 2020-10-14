@@ -36,17 +36,16 @@ class DisableDismissPopupContentViewController: UIViewController, SBCardPopupCon
     // MARK: - Actions
     
     @IBAction private func option1ButtonPressed(sender: UIButton){
-        popupViewController?.close()
+        popupDismisser?.dismiss()
     }
     
     @IBAction private func option2ButtonPressed(sender: UIButton){
-        popupViewController?.close()
+        popupDismisser?.dismiss()
     }
     
     // MARK: - SBPopupCardContent
     
-    weak var popupViewController: SBCardPopupViewController?
-    
+    var popupDismisser: SBCardPopupDismisser?
     let allowsTapToDismissPopupCard = false
     let allowsSwipeToDismissPopupCard = false
 
